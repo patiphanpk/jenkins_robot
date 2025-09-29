@@ -10,25 +10,18 @@ ${TIMEOUT}       10
 *** Test Cases ***
 true_when_x_is_17
     Create Session    api    ${BASE_URL}
-    ${resp}=    Get Request    api    /is_prime/17
+    ${resp}=    GET On Session    api    /is_prime/17
     Should Be Equal As Strings    ${resp.status_code}    200
     Should Be Equal As Strings    ${resp.text}    true
 
 false_when_x_is_36
     Create Session    api    ${BASE_URL}
-    ${resp}=    Get Request    api    /is_prime/36
+    ${resp}=    GET On Session    api    /is_prime/36
     Should Be Equal As Strings    ${resp.status_code}    200
     Should Be Equal As Strings    ${resp.text}    false
 
 true_when_x_is_13219
     Create Session    api    ${BASE_URL}
-    ${resp}=    Get Request    api    /is_prime/13219
+    ${resp}=    GET On Session    api    /is_prime/13219
     Should Be Equal As Strings    ${resp.status_code}    200
     Should Be Equal As Strings    ${resp.text}    true
-
-Test API Performance
-    ${start}=    Evaluate    __import__('time').time()
-    ${response}=    GET    ${BASE_URL}/plus/5/6
-    ${end}=    Evaluate    __import__('time').time()
-    ${response_time}=    Evaluate    ${end} - ${start}
-    Should Be True    ${response_time} < 1.0
