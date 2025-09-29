@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.3.2 (Python 3.11.8 on win32)" generated="2025-09-28T08:05:36.427691" rpa="false" schemaversion="5">
+<suite id="s1" name="Api Tests" source="E:\workspace\jenkins-robot\tests\api_tests.robot">
+<test id="s1-t1" name="Test Health Endpoint" line="12">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-09-28T08:05:36.634087" level="INFO">Creating Session using : alias=api, url=http://localhost:5000, headers={},                     cookies={}, auth=None, timeout=10, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>timeout=${TIMEOUT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-09-28T08:05:36.634087" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-09-28T08:05:40.720330" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000207211B9610&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /health</msg>
+<msg time="2025-09-28T08:05:45.013997" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000002071E271F90&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /health</msg>
+<msg time="2025-09-28T08:05:49.455191" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000002071E270D90&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /health</msg>
+<msg time="2025-09-28T08:05:53.521830" level="FAIL">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /health (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000002071E271490&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>/health</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-09-28T08:05:36.634087" elapsed="16.988585">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /health (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000002071E271490&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))</status>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2025-09-28T08:05:53.622672" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-09-28T08:05:53.622672" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${json}[status]</arg>
+<arg>healthy</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" start="2025-09-28T08:05:53.622672" elapsed="0.000981"/>
+</kw>
+<kw name="Delete All Sessions" owner="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<status status="NOT RUN" start="2025-09-28T08:05:53.624046" elapsed="0.000000"/>
+</kw>
+<doc>Test the health check endpoint</doc>
+<tag>health</tag>
+<status status="FAIL" start="2025-09-28T08:05:36.625941" elapsed="16.998105">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /health (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000002071E271490&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))</status>
+</test>
+<test id="s1-t2" name="Test Plus API With Positive Numbers" line="22">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-09-28T08:05:53.625490" level="INFO">Creating Session using : alias=api, url=http://localhost:5000, headers={},                     cookies={}, auth=None, timeout=10, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>timeout=${TIMEOUT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-09-28T08:05:53.625490" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-09-28T08:05:57.681081" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000207221A8BD0&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /plus/5/6</msg>
+<msg time="2025-09-28T08:06:01.927929" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000207221A9790&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /plus/5/6</msg>
+<msg time="2025-09-28T08:06:06.408769" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000207221AA350&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /plus/5/6</msg>
+<msg time="2025-09-28T08:06:10.464603" level="FAIL">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /plus/5/6 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000207221AAF10&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>/plus/5/6</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-09-28T08:05:53.625490" elapsed="16.839113">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /plus/5/6 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000207221AAF10&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))</status>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2025-09-28T08:06:10.464603" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-09-28T08:06:10.464603" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${json}[result]</arg>
+<arg>11</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2025-09-28T08:06:10.464603" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${json}[num1]</arg>
+<arg>5</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2025-09-28T08:06:10.464603" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${json}[num2]</arg>
+<arg>6</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2025-09-28T08:06:10.464603" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>${json}[operation]</arg>
+<arg>addition</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" start="2025-09-28T08:06:10.464603" elapsed="0.000000"/>
+</kw>
+<kw name="Delete All Sessions" owner="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<status status="NOT RUN" start="2025-09-28T08:06:10.464603" elapsed="0.000000"/>
+</kw>
+<doc>Test plus endpoint with positive numbers</doc>
+<tag>plus</tag>
+<tag>positive</tag>
+<status status="FAIL" start="2025-09-28T08:05:53.624728" elapsed="16.839875">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /plus/5/6 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000207221AAF10&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))</status>
+</test>
+<test id="s1-t3" name="Test Plus API With Negative Numbers" line="35">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-09-28T08:06:10.464603" level="INFO">Creating Session using : alias=api, url=http://localhost:5000, headers={},                     cookies={}, auth=None, timeout=10, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>timeout=${TIMEOUT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-09-28T08:06:10.464603" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-09-28T08:06:14.516418" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000207221A9A10&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /plus/-5/3</msg>
+<msg time="2025-09-28T08:06:18.761635" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000207221A8C50&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /plus/-5/3</msg>
+<msg time="2025-09-28T08:06:23.240932" level="WARN">Retrying (RetryAdapter(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000002072219AC50&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /plus/-5/3</msg>
+<msg time="2025-09-28T08:06:27.310272" level="FAIL">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /plus/-5/3 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000002072219B6D0&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))</msg>
+<var>${response}</var>
+<arg>api</arg>
+<arg>/plus/-5/3</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="FAIL" start="2025-09-28T08:06:10.464603" elapsed="16.848016">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /plus/-5/3 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000002072219B6D0&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))</status>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="NOT RUN" start="2025-09-28T08:06:27.312871" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<var>${json}</var>
+<arg>${response.json()}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" start="2025-09-28T08:06:27.312871" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${json}[result]</arg>
+<arg>-2</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2025-09-28T08:06:27.312871" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${json}[num1]</arg>
+<arg>-5</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2025-09-28T08:06:27.312871" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${json}[num2]</arg>
+<arg>3</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2025-09-28T08:06:27.313942" elapsed="0.000000"/>
+</kw>
+<kw name="Delete All Sessions" owner="RequestsLibrary">
+<doc>Removes all the session objects</doc>
+<status status="NOT RUN" start="2025-09-28T08:06:27.313942" elapsed="0.000000"/>
+</kw>
+<doc>Test plus endpoint with negative numbers</doc>
+<tag>negative</tag>
+<tag>plus</tag>
+<status status="FAIL" start="2025-09-28T08:06:10.464603" elapsed="16.849339">ConnectionError: HTTPConnectionPool(host='localhost', port=5000): Max retries exceeded with url: /plus/-5/3 (Caused by NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x000002072219B6D0&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it'))</status>
+</test>
+<test id="s1-t4" name="Test Plus API With Zero" line="47">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-09-28T08:06:27.315958" level="INFO">Creating Session using : alias=api, url=http://localhost:5000, headers={},                     cookies={}, auth=None, timeout=10, proxies=None, verify=False,                     debug=0 </msg>
+<arg>api</arg>
+<arg>${BASE_URL}</arg>
+<arg>timeout=${TIMEOUT}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-09-28T08:06:27.314959" elapsed="0.000999"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2025-09-28T08:06:31.419199" level="WARN">Retrying (RetryAdapter(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000207221BD590&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /plus/0/10</msg>
+<msg time="2025-09-28T08:06:35.727881" level="WARN">Retrying (RetryAdapter(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError('&lt;urllib3.connection.HTTPConnection object at 0x00000207221BE110&gt;: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')': /plus/0/10</msg>
+<msg time="2025-09-28T08:06:40.194887" level="WARN">
