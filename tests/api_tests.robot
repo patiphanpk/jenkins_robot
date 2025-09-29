@@ -12,19 +12,19 @@ true_when_x_is_17
     Create Session    api    ${BASE_URL}
     ${resp}=    GET On Session    api    /is_prime/17
     Should Be Equal As Strings    ${resp.status_code}    200
-    ${json}=    To JSON    ${resp.text}
-    Should Be Equal As Strings    ${resp.text}    true
+    ${json}=    Set Variable    ${resp.json()}
+    Should Be Equal    ${json}[output]    true
 
 false_when_x_is_36
     Create Session    api    ${BASE_URL}
     ${resp}=    GET On Session    api    /is_prime/36
     Should Be Equal As Strings    ${resp.status_code}    200
-    ${json}=    To JSON    ${resp.text}
-    Should Be Equal As Strings    ${resp.text}    false
+    ${json}=    Set Variable    ${resp.json()}
+    Should Be Equal    ${json}[output]    false
 
 true_when_x_is_13219
     Create Session    api    ${BASE_URL}
     ${resp}=    GET On Session    api    /is_prime/13219
     Should Be Equal As Strings    ${resp.status_code}    200
-    ${json}=    To JSON    ${resp.text}
-    Should Be Equal As Strings    ${resp.text}    true
+    ${json}=    Set Variable    ${resp.json()}
+    Should Be Equal    ${json}[output]    true
